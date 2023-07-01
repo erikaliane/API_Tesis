@@ -1,17 +1,31 @@
 const mongoose = require('mongoose');
 
-const ReservaSchema = mongoose.Schema({
-    
-    alumno: {
-        type: String,
-        require: true
-    },
-    numero_asiento: {
-        type: String,
-        require: true
-    },
-    
-   
+const reservaSchema = new mongoose.Schema({
+  Fecha: {
+    type: Date,
+    required: true
+  },
+  qr: {
+    type: String,
+    required: true
+  },
+  asientoId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Asiento',
+    required: true
+  },
+  usuarioId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Usuario',
+    required: true
+  },
+  horarioId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Horario',
+    required: true
+  }
 });
 
-module.exports = mongoose.model('Reserva', ReservaSchema)
+const Reserva = mongoose.model('Reserva', reservaSchema);
+
+module.exports = Reserva;

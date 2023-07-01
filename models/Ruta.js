@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
 
-const RutaSchema = mongoose.Schema({
-    
-    nombre_paradero: {
-        type: String,
-        require: true
-    },
-    
-    
-   
+const rutaSchema = new mongoose.Schema({
+  punto_inicio: {
+    type: String,
+    required: true
+  },
+  punto_destino: {
+    type: String,
+    required: true
+  }
 });
 
-module.exports = mongoose.model('Ruta', UsuarioSchema)
+const Ruta = mongoose.model('Ruta', rutaSchema);
+
+module.exports = Ruta;

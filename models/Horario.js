@@ -1,10 +1,17 @@
 const mongoose = require('mongoose');
 
-const HorarioSchema = mongoose.Schema({
-    hora_ruta: {
-        type: Date,
-        required: true
-    }
+const horarioSchema = new mongoose.Schema({
+  hora_inicio: {
+    type: String,
+    required: true
+  },
+  rutaId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Ruta',
+    required: true
+  }
 });
 
-module.exports = mongoose.model('Horario', HorarioSchema);
+const Horario = mongoose.model('Horario', horarioSchema);
+
+module.exports = Horario;

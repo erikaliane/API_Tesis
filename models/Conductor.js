@@ -1,30 +1,30 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
-const ConductorSchema = mongoose.Schema({
-    usuario: {
-        type: String,
-        required: true
-    },
-    contraseña: {
-        type: String,
-        required: true
-    }
+const conductorSchema = new mongoose.Schema({
+  perfil: {
+    type: String,
+    required: true
+  },
+  usuario: {
+    type: String,
+    required: true
+  },
+  contraseña: {
+    type: String,
+    required: true
+  },
+  telefono: {
+    type: String,
+    required: true
+  },
+  latitud: String,
+  longitud: String,
+  administradorId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Administrador'
+  }
 });
 
-ConductorSchema.pre('save', async function(next) {
-    if (!this.isModified('contraseña')) {
-        return next();
-    }
+const Conductor = mongoose.model('Conductor', conductorSchema);
 
-    try {
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(this.contraseña, salt);
-        this.contraseña = hashedPassword;
-        next();
-    } catch (error) {
-        return next(error);
-    }
-});
-
-module.exports = mongoose.model('Conductor', ConductorSchema);
+module.exports = Conductor;
