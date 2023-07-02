@@ -12,14 +12,16 @@ app.use(cors())
 
 app.use(express.json());
 // Rutas
-app.use('/api/asientos', require('./routes/Asiento'));
-app.use('/api/buses', require('./routes/Bus'));
-app.use('/api/conductores', require('./routes/Conductor'));
-app.use('/api/horarios', require('./routes/Horario'));
-app.use('/api/paraderos', require('./routes/Paradero'));
-app.use('/api/reservas', require('./routes/Reserva'));
-app.use('/api/rutas', require('./routes/Ruta'));
-app.use('/api/ubicaciones', require('./routes/Ubicacion'));
+app.use('/api/administradores', require('./routes/administradorRoutes'));
+app.use('/api/asientos', require('./routes/asientoRoutes'));
+app.use('/api/buses', require('./routes/busRoutes'));
+app.use('/api/conductores', require('./routes/conductorRoutes'));
+app.use('/api/horarios', require('./routes/horarioRoutes'));
+app.use('/api/paraderos', require('./routes/paraderoRoutes'));
+app.use('/api/reservas', require('./routes/reservaRoutes'));
+app.use('/api/rutas', require('./routes/rutaRoutes'));
+app.use('/api/ubicaciones', require('./routes/ubicacionRoutes'));
+app.use('/api/usuarios', require('./routes/usuarioRoutes'));
 
 // Puerto de escucha
 app.listen(config.port, () => {

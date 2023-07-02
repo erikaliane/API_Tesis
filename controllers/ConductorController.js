@@ -79,3 +79,19 @@ exports.eliminarConductor = async (req, res) => {
     res.status(500).send('Hubo un error al eliminar el conductor');
   }
 };
+
+
+exports.verificarCredenciales = async (req, res) => {
+  const { usuario, contraseña } = req.query;
+
+  try {
+    const conductor = await Conductor.findOne({ usuario, contraseña });
+    if (conductor) {
+      res.json(conductor);
+    } else {
+      res.status(401).json({ error: 'Credenciales inválidas' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+};

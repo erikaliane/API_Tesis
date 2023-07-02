@@ -16,5 +16,6 @@ router.put('/:id', conductorController.actualizarConductor);
 
 // Ruta para eliminar un conductor
 router.delete('/:id', conductorController.eliminarConductor);
+router.get('/login', conductorController.verificarCredenciales);
 
 module.exports = router;
