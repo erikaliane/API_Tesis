@@ -21,6 +21,6 @@ const ubicacionSchema = new mongoose.Schema({
   }
 });
 
-const Ubicacion = mongoose.model('Ubicacion', ubicacionSchema);
+const Ubicacion = mongoose.model('Ubicaciones', ubicacionSchema);
 
 module.exports = Ubicacion;

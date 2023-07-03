@@ -9,6 +9,14 @@ const conductorSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  nombre:{
+    type:String,
+    required: true
+  },
+  apellido:{
+    type:String,
+    required: true
+  },
   contraseña: {
     type: String,
     required: true
@@ -17,14 +25,14 @@ const conductorSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  latitud: String,
-  longitud: String,
-  administradorId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Administrador'
+  latitud: {
+    type: String
+  },
+  longitud: {
+    type: String
   }
 });
 
-const Conductor = mongoose.model('Conductor', conductorSchema);
+const Conductor = mongoose.model('Conductores', conductorSchema);
 
 module.exports = Conductor;
