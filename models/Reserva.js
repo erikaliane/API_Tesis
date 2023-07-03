@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const reservaSchema = new mongoose.Schema({
+  
   Fecha: {
     type: Date,
     required: true

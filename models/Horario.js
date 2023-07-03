@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const horarioSchema = new mongoose.Schema({
+  
   hora_inicio: {
     type: String,
     required: true

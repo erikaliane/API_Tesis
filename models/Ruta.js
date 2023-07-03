@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const rutaSchema = new mongoose.Schema({
+  
   punto_inicio: {
     type: String,
     required: true

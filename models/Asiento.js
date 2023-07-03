@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const asientoSchema = new mongoose.Schema({
+  
   fila: {
     type: String,
     required: true

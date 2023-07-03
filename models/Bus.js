@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const busSchema = new mongoose.Schema({
+  
   cant_asiento: {
     type: Number,
     required: true

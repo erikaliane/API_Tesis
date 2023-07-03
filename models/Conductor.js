@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
 
 const conductorSchema = new mongoose.Schema({
+  
   perfil: {
     type: String,
     required: true
@@ -30,6 +33,18 @@ const conductorSchema = new mongoose.Schema({
   },
   longitud: {
     type: String
+  }
+});
+
+// Antes de guardar el conductor, encriptar la contraseña
+conductorSchema.pre('save', async function (next) {
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(this.contraseña, salt);
+    this.contraseña = hashedPassword;
+    next();
+  } catch (error) {
+    next(error);
   }
 });
 

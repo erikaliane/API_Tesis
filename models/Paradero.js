@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const paraderoSchema = new mongoose.Schema({
+  
   nombre_paradero: {
     type: String,
     required: true

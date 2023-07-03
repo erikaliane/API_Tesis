@@ -1,4 +1,6 @@
 const Conductor = require("../models/Conductor");
+const bcrypt = require('bcryptjs');
+
 
 exports.crearConductor = async (req, res) => {
   try {
@@ -82,15 +84,22 @@ exports.eliminarConductor = async (req, res) => {
 
 
 exports.verificarCredenciales = async (req, res) => {
-  const { usuario, contraseña } = req.query;
+  const { usuario, contraseña } = req.body; // Cambiar de req.query a req.body si los datos se envían en el cuerpo de la solicitud
 
   try {
-    const conductor = await Conductor.findOne({ usuario, contraseña });
-    if (conductor) {
-      res.json(conductor);
-    } else {
-      res.status(401).json({ error: 'Credenciales inválidas' });
+    const conductor = await Conductor.findOne({ usuario });
+
+    if (!conductor) {
+      return res.status(401).json({ error: 'Credenciales inválidas' });
     }
+
+    const contraseñaValida = await bcrypt.compare(contraseña, conductor.contraseña);
+
+    if (!contraseñaValida) {
+      return res.status(401).json({ error: 'Credenciales inválidas' });
+    }
+
+    res.json(conductor);
   } catch (error) {
     res.status(500).json({ error: 'Error en el servidor' });
   }

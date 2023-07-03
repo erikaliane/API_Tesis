@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const administradorSchema = new mongoose.Schema({
+  
   usuario: {
     type: String,
     required: true
