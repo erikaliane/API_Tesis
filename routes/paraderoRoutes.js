@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const paraderoController = require('../controllers/paraderoController');
+const paraderoController = require('../controllers/ParaderoController');
 
 // Ruta para crear un paradero
 router.post('/', paraderoController.crearParadero);
