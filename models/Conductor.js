@@ -29,10 +29,10 @@ const conductorSchema = new mongoose.Schema({
     required: true
   },
   latitud: {
-    type: String
+    type: Number
   },
   longitud: {
-    type: String
+    type: Number
   }
 });
 

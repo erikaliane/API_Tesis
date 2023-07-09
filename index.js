@@ -2,6 +2,7 @@ const express = require('express');
 const conectarDB = require('./config/db')
 const config = require('./config/global');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 
@@ -23,7 +24,9 @@ app.use('/api/rutas', require('./routes/rutaRoutes'));
 app.use('/api/ubicaciones', require('./routes/ubicacionRoutes'));
 app.use('/api/usuarios', require('./routes/usuarioRoutes'));
 
+const PORT = process.env.PORT
+
 // Puerto de escucha
-app.listen(config.port, () => {
-    console.log('El servidor por el puerto 4000')
+app.listen(   PORT, () => {
+    console.log("El servidor por el puerto " + PORT)
 })

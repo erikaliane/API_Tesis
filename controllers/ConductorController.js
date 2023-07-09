@@ -1,6 +1,6 @@
 const Conductor = require("../models/Conductor");
 const bcrypt = require('bcryptjs');
-
+const { Types } = require('mongoose');
 
 exports.crearConductor = async (req, res) => {
   try {
@@ -26,7 +26,7 @@ exports.obtenerConductores = async (req, res) => {
 
 exports.actualizarConductor = async (req, res) => {
   try {
-    const { _id, perfil, usuario, contraseña, telefono, latitud, longitud, administradorId } = new Conductor(req.body);
+    const { _id, perfil, usuario, contraseña, telefono, latitud, longitud} = new Conductor(req.body);
     let conductor = await Conductor.findById(req.params.id);
 
     if (!conductor) {
@@ -40,7 +40,7 @@ exports.actualizarConductor = async (req, res) => {
     conductor.telefono = telefono;
     conductor.latitud = latitud;
     conductor.longitud = longitud;
-    conductor.administradorId = administradorId;
+
 
     conductor = await Conductor.findOneAndUpdate({ _id: req.params.id }, conductor, { new: true });
     res.json(conductor);
@@ -102,5 +102,29 @@ exports.verificarCredenciales = async (req, res) => {
     res.json(conductor);
   } catch (error) {
     res.status(500).json({ error: 'Error en el servidor' });
+  }
+};
+
+
+
+exports.actualizarUbicacion = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const { latitud, longitud } = req.body;
+
+    const conductor = await Conductor.findOneAndUpdate(
+      { usuario: username },
+      { latitud, longitud },
+      { new: true }
+    );
+
+    if (!conductor) {
+      return res.status(404).json({ msg: 'No se encontró el conductor' });
+    }
+
+    res.json(conductor);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Hubo un error al actualizar la ubicación del conductor');
   }
 };

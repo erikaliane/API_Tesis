@@ -18,4 +18,8 @@ router.put('/:id', conductorController.actualizarConductor);
 router.delete('/:id', conductorController.eliminarConductor);
 router.post('/login', conductorController.verificarCredenciales);
 
+
+router.put('/ubicacion/:username', conductorController.actualizarUbicacion);
+
+
 module.exports = router;
