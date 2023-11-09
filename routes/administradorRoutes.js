@@ -3,18 +3,18 @@ const router = express.Router();
 const administradorController = require('../controllers/AdministradorController');
 
 // Ruta para crear un administrador
-router.post('/administradores', administradorController.crearAdministrador);
+router.post('/', administradorController.crearAdministrador);
 
 // Ruta para obtener todos los administradores
-router.get('/administradores', administradorController.obtenerAdministradores);
+router.get('/', administradorController.obtenerAdministradores);
 
 // Ruta para obtener un administrador por su ID
-router.get('/administradores/:id', administradorController.obtenerAdministradorPorId);
+router.get('/:id', administradorController.obtenerAdministradorPorId);
 
 // Ruta para actualizar un administrador
-router.put('/administradores/:id', administradorController.actualizarAdministrador);
+router.put('/:id', administradorController.actualizarAdministrador);
 
 // Ruta para eliminar un administrador
-router.delete('/administradores/:id', administradorController.eliminarAdministrador);
+router.delete('/:id', administradorController.eliminarAdministrador);
 
 module.exports = router;
