@@ -24,7 +24,7 @@ exports.obtenerReservas = async (req, res) => {
 
 exports.actualizarReserva = async (req, res) => {
   try {
-    const { Fecha, qr, asientoId, usuarioId, horarioId } = new Reserva(req.body);
+    const { Fecha, qr, asientoId, usuarioId, horarioId , confirmado} = new Reserva(req.body);
     let reserva = await Reserva.findById(req.params.id);
 
     if (!reserva) {
@@ -36,7 +36,7 @@ exports.actualizarReserva = async (req, res) => {
     reserva.asientoId = asientoId;
     reserva.usuarioId = usuarioId;
     reserva.horarioId = horarioId;
-
+    reserva.confirmado = confirmado;
     reserva = await Reserva.findOneAndUpdate({ _id: req.params.id }, reserva, { new: true });
     res.json(reserva);
   } catch (error) {

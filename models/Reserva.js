@@ -24,6 +24,10 @@ const reservaSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Horario',
     required: true
+  },
+  confirmado: {
+    type: Boolean,
+    default: false  // Puedes establecer el valor predeterminado según tus necesidades
   }
 });
 
